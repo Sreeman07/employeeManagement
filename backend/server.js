@@ -12,7 +12,8 @@ const app = exp();
 app.use(
   cors({
     origin: [
-      "http://localhost:5173"
+      "http://localhost:5173",
+      "https://employee-management-b6yaqo4rx-sreeman07s-projects.vercel.app"
     ],
   })
 );
