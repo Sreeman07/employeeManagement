@@ -1,34 +1,49 @@
 import exp from "express";
-import { connect } from "mongoose";
+import mongoose from "mongoose";
 import { empRoute } from "./API/empApp.js";
 import cors from "cors";
+import dotenv from "dotenv";
+
+dotenv.config();
 
 const app = exp();
-//add cors middleware
+
+// CORS (add your frontend URL later)
 app.use(
   cors({
-    origin: ["http://localhost:5173"],
-  }),
+    origin: [
+      "http://localhost:5173"
+    ],
+  })
 );
-//body parser middleware
+
+// body parser
 app.use(exp.json());
-//emp api middleware
+
+// routes
 app.use("/emp-api", empRoute);
 
-//DB connection
+// DB connection
 const connectDB = async () => {
   try {
-    await connect("mongodb://localhost:27017/empdb");
-    console.log("DB connected");
-    app.listen(4000, () => console.log("server listening on port 4000.."));
+    await mongoose.connect(process.env.DB_URL); // ✅ use Atlas
+
+    console.log("✅ DB connected");
+
+    const port = process.env.PORT || 4000;
+
+    app.listen(port, () =>
+      console.log(`🚀 server running on port ${port}`)
+    );
   } catch (err) {
-    console.log("err in DB connection", err.message);
+    console.log("❌ DB error:", err.message);
+    process.exit(1);
   }
 };
 
 connectDB();
 
-//error handling middleware
+// error middleware
 app.use((err, req, res, next) => {
   console.log("err in middleware:", err.message);
 
