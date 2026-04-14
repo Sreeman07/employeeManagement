@@ -11,7 +11,7 @@ function EditEmployee() {
   // Set existing employee data into form
   useEffect(() => {
     if (state) {
-      setValue("_id", state._id); // ✅ important for update
+      setValue("_id", state._id); // important for update
       setValue("name", state.name);
       setValue("email", state.email);
       setValue("mobile", state.mobile);
@@ -24,7 +24,7 @@ function EditEmployee() {
   const saveModifiedEmp = async (modifiedEmp) => {
     try {
       const res = await axios.put(
-        `http://localhost:4000/emp-api/employees/${modifiedEmp._id}`,
+        `http://employeemanagement-2-9rwq.onrender.com/emp-api/employees/${modifiedEmp._id}`,
         modifiedEmp
       );
 

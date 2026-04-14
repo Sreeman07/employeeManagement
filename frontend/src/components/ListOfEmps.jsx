@@ -12,12 +12,12 @@ function ListOfEmps() {
     navigate("/edit-emp",{state:empObj})
   }
   const deleteEmpId=async(id)=>{
-    let res = await axios.delete(`http://localhost:4000/emp-api/employees/${id}`)
+    let res = await axios.delete(`http://employeemanagement-2-9rwq.onrender.com/emp-api/employees/${id}`)
     if(res.status==200)
       getEmps();
   }
   async function getEmps(){
-    let res=await fetch("http://localhost:4000/emp-api/employees")
+    let res=await fetch("http://employeemanagement-2-9rwq.onrender.com/emp-api/employees")
     if(res.status==200){
       let resObj=await res.json();
       setEmps(resObj.payload);
