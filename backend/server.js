@@ -13,11 +13,12 @@ app.use(
   cors({
     origin: [
       "http://localhost:5173",
-      "https://employee-management-b6yaqo4rx-sreeman07s-projects.vercel.app"
+      "https://employee-management-h1iz5v443-sreeman07s-projects.vercel.app"
     ],
+    methods: ["GET", "POST", "PUT", "DELETE"],
+    credentials: true,
   })
 );
-
 // body parser
 app.use(exp.json());
 
