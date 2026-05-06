@@ -8,17 +8,9 @@ dotenv.config();
 
 const app = exp();
 
-// CORS (add your frontend URL later)
-app.use(
-  cors({
-    origin: [
-      "http://localhost:5173",
-      "https://employee-management-h1iz5v443-sreeman07s-projects.vercel.app"
-    ],
-    methods: ["GET", "POST", "PUT", "DELETE"],
-    credentials: true,
-  })
-);
+// CORS
+app.use(cors());
+
 // body parser
 app.use(exp.json());
 
@@ -28,7 +20,7 @@ app.use("/emp-api", empRoute);
 // DB connection
 const connectDB = async () => {
   try {
-    await mongoose.connect(process.env.DB_URL); // ✅ use Atlas
+    await mongoose.connect(process.env.DB_URL);
 
     console.log("✅ DB connected");
 
